@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Swashbuckle.AspNetCore.AzureFunctions", "Swashbuckle.AspNetCore.AzureFunctions\Swashbuckle.AspNetCore.AzureFunctions.csproj", "{1B6A074A-F467-42AD-BDAA-BB95D0B4FD01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{27391F38-3EE5-4A9A-8841-0C39A9D792A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1B6A074A-F467-42AD-BDAA-BB95D0B4FD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B6A074A-F467-42AD-BDAA-BB95D0B4FD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B6A074A-F467-42AD-BDAA-BB95D0B4FD01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27391F38-3EE5-4A9A-8841-0C39A9D792A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27391F38-3EE5-4A9A-8841-0C39A9D792A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27391F38-3EE5-4A9A-8841-0C39A9D792A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27391F38-3EE5-4A9A-8841-0C39A9D792A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
