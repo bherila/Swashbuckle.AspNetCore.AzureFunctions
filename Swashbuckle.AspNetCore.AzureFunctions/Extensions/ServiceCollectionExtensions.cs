@@ -21,10 +21,15 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Extensions
         /// </summary>
         /// <param name="services">Service collection</param>
         /// <param name="functionAssembly">Functions assembly</param>
-        public static void AddAzureFunctionsApiProvider(this IServiceCollection services, Assembly functionAssembly)
+        /// <param name="routePrefix">HTTP functions route prefix</param>
+        public static void AddAzureFunctionsApiProvider(this IServiceCollection services, Assembly functionAssembly, string routePrefix = "api")
         {
             services.AddOptions();
-            services.Configure<AzureFunctionsOptions>(o => o.Assembly = functionAssembly);
+            services.Configure<AzureFunctionsOptions>(o => 
+            {
+                o.Assembly = functionAssembly;
+                o.RoutePrefix = routePrefix;
+            });
             services.AddSingleton<IApiDescriptionGroupCollectionProvider, FunctionApiDescriptionProvider>();
         }
 
