@@ -23,10 +23,10 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Providers
 
         public FunctionApiDescriptionProvider(IOptions<AzureFunctionsOptions> functionsOptions)
         {
-            Initialize(functionsOptions.Value.Assembly);
+            Initialize(functionsOptions.Value.Assembly, functionsOptions.Value.RoutePrefix);
         }
 
-        private void Initialize(Assembly functionsAssembly)
+        private void Initialize(Assembly functionsAssembly, string routePrefix)
         {
             var methods = functionsAssembly.GetTypes()
                 .SelectMany(t => t.GetMethods())
@@ -40,7 +40,8 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Providers
                     continue;
 
                 var functionAttr = (FunctionNameAttribute)methodInfo.GetCustomAttribute(typeof(FunctionNameAttribute), false);
-                var route = $"api/{(!string.IsNullOrWhiteSpace(triggerAttribute.Route) ? triggerAttribute.Route : functionAttr.Name)}";
+                var prefix = string.IsNullOrWhiteSpace(routePrefix) ? "" : $"{routePrefix.TrimEnd('/')}/";
+                var route = $"{prefix}{(!string.IsNullOrWhiteSpace(triggerAttribute.Route) ? triggerAttribute.Route : functionAttr.Name)}";
                 var verbs = triggerAttribute.Methods ?? new[] { "get", "post", "delete", "head", "patch", "put", "options" };
                 var items = new List<ApiDescription>();
                 foreach (string verb in verbs)
