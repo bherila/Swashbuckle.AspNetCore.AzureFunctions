@@ -9,10 +9,10 @@
     <PackageId>Swashbuckle.AspNetCore.AzureFunctions2</PackageId>
     <PackageTags>swagger;documentation;discovery;help;webapi;aspnet;aspnetcore;azure-functions</PackageTags>
     <PackageProjectUrl>https://github.com/dviana07/Swashbuckle.AspNetCore.AzureFunctions</PackageProjectUrl>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/dviana07/Swashbuckle.AzureFunctions/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/dviana07/Swashbuckle.AspNetCore.AzureFunctions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageVersion>1.2.0</PackageVersion>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/dviana07/Swashbuckle.AspNetCore.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/dviana07/Swashbuckle.AspNetCore.AzureFunctions.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
