@@ -43,15 +43,14 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Extensions
         public static string GetSwagger(this IServiceProvider serviceProvider, string documentName, bool serializeAsV2 = false)
         {
             var requiredService = serviceProvider.GetRequiredService<ISwaggerProvider>();
-            var swaggerDocument = requiredService.GetSwagger(documentName);
+            var swagger = requiredService.GetSwagger(documentName);
 
-            using (var streamWriter = new StringWriter(CultureInfo.InvariantCulture))
+            using (var textWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
-                var jsonWriter = new OpenApiJsonWriter(streamWriter);
-                if (serializeAsV2) swaggerDocument.SerializeAsV2(jsonWriter); else swaggerDocument.SerializeAsV3(jsonWriter);
+                var jsonWriter = new OpenApiJsonWriter(textWriter);
+                if (serializeAsV2) swagger.SerializeAsV2(jsonWriter); else swagger.SerializeAsV3(jsonWriter);
 
-                var content = streamWriter.ToString();
-                return content;
+                return textWriter.ToString();
             }
         }
     }
