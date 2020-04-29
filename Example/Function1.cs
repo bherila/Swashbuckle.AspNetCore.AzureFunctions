@@ -18,7 +18,6 @@ namespace Example
 		[SupportedMediaType("application/json")]
 	    [OptionalQueryParameter("name", typeof(string))]
 		[SwaggerOperationFilter(typeof(AppendHttpMethodToOperationIdFilter))]
-		//[SwaggerOperationFilter(typeof(RemoveBodyParameterFromGetFilter))]
 		public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log)
         {
             log.Info("C# HTTP trigger function processed a request.");
