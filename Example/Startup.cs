@@ -1,9 +1,11 @@
-﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
+//using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.AzureFunctions;
 using Swashbuckle.AspNetCore.AzureFunctions.Extensions;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
@@ -42,12 +44,20 @@ namespace Example
                 //options.EnableAnnotations();
             });
 
-            builder.Services.AddTransient<Microsoft.AspNetCore.Hosting.IHostingEnvironment, HostingEnvironment>();
+            builder.Services.AddSingleton<Microsoft.AspNetCore.Hosting.IHostingEnvironment>(s =>
+            {
+                var env = s.GetService<Microsoft.Extensions.Hosting.IHostingEnvironment>();
+                return new HostingEnvironment
+                {
+                    ApplicationName = env.ApplicationName,
+                    EnvironmentName = env.EnvironmentName,
+                    ContentRootPath = env.ContentRootPath,
+                    ContentRootFileProvider = env.ContentRootFileProvider,
+                };
+            });
 
             //ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
             //var provider3 = serviceProvider.GetService<IConfigureOptions<SwaggerGeneratorOptions>>();
-            //var provider = serviceProvider.GetService<Swashbuckle.AspNetCore.Swagger.ISwaggerProvider>();
-            //var provider2 = serviceProvider.GetService<SwaggerGenerator>();
 
             services.AddSwaggerGenNewtonsoftSupport();
         }
@@ -57,11 +67,11 @@ namespace Example
     {
         public string EnvironmentName { get; set; }
 
-        public string WebRoot { get; set; }
-        public string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string WebRoot { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ApplicationName { get; set; }
         public string WebRootPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public IFileProvider WebRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string ContentRootPath { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public IFileProvider ContentRootFileProvider { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string ContentRootPath { get; set; }
+        public IFileProvider ContentRootFileProvider { get; set; }
     }
 }
