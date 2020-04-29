@@ -1,10 +1,10 @@
-﻿using Microsoft.Azure.WebJobs;
+﻿using System;
+using System.Net.Http;
+using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.AzureFunctions.Annotations;
 using Swashbuckle.AspNetCore.AzureFunctions.Extensions;
-using System;
-using System.Net.Http;
 
 namespace Example
 {

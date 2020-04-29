@@ -13,7 +13,7 @@ namespace Example
     public static class Function1
     {
 	    [FunctionName(nameof(Run))]
-		[SwaggerOperationAttribute(nameof(Run), Tags = new[] { "Sample" })]
+		[SwaggerOperation(nameof(Run), Tags = new[] { "Sample" })]
 		[SwaggerResponse(type: typeof(string), statusCode: 200)]
 		[SupportedMediaType("application/json")]
 	    [OptionalQueryParameter("name", typeof(string))]
