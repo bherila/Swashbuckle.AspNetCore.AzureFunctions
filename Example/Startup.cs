@@ -1,13 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+﻿using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-//using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.AzureFunctions;
 using Swashbuckle.AspNetCore.AzureFunctions.Extensions;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
 using System.Reflection;
 
@@ -55,9 +50,6 @@ namespace Example
                     ContentRootFileProvider = env.ContentRootFileProvider,
                 };
             });
-
-            //ServiceProvider serviceProvider = builder.Services.BuildServiceProvider();
-            //var provider3 = serviceProvider.GetService<IConfigureOptions<SwaggerGeneratorOptions>>();
 
             services.AddSwaggerGenNewtonsoftSupport();
         }
