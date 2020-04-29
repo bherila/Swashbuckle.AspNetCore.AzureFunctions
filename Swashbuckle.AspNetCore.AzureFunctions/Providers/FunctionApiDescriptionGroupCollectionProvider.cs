@@ -83,7 +83,8 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Providers
                     ControllerName = functionAttr.Name,
                     DisplayName = functionAttr.Name,
                     ControllerTypeInfo = methodInfo.DeclaringType.GetTypeInfo(),
-                    Parameters = new List<ParameterDescriptor>()
+                    Parameters = new List<ParameterDescriptor>(),
+                    RouteValues = new Dictionary<string, string> { { "controller", functionAttr.Name } },
                 },
                 RelativePath = route,
                 HttpMethod = verb.ToUpper(),
