@@ -49,7 +49,7 @@ namespace Example
             //var provider = serviceProvider.GetService<Swashbuckle.AspNetCore.Swagger.ISwaggerProvider>();
             //var provider2 = serviceProvider.GetService<SwaggerGenerator>();
 
-            //services.AddSwaggerGenNewtonsoftSupport();
+            services.AddSwaggerGenNewtonsoftSupport();
         }
     }
 
