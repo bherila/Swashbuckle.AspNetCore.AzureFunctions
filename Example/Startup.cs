@@ -41,7 +41,7 @@ namespace Example
 
                 // Add Enums to Swagger as String
                 options.DescribeAllEnumsAsStrings();
-                //options.EnableAnnotations();
+                options.EnableAnnotations();
             });
 
             builder.Services.AddSingleton<Microsoft.AspNetCore.Hosting.IHostingEnvironment>(s =>
