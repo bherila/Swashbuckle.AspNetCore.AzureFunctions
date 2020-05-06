@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Writers;
 using Swashbuckle.AspNetCore.AzureFunctions.Application;
 using Swashbuckle.AspNetCore.AzureFunctions.Providers;
 using Swashbuckle.AspNetCore.Swagger;
@@ -25,7 +25,7 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Extensions
         public static void AddAzureFunctionsApiProvider(this IServiceCollection services, Assembly functionAssembly, string routePrefix = "api")
         {
             services.AddOptions();
-            services.Configure<AzureFunctionsOptions>(o => 
+            services.Configure<AzureFunctionsOptions>(o =>
             {
                 o.Assembly = functionAssembly;
                 o.RoutePrefix = routePrefix;
@@ -38,20 +38,19 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Extensions
         /// </summary>
         /// <param name="serviceProvider"></param>
         /// <param name="documentName"></param>
+        /// <param name="serializeAsV2"></param>
         /// <returns></returns>
-        public static string GetSwagger(this IServiceProvider serviceProvider, string documentName)
+        public static string GetSwagger(this IServiceProvider serviceProvider, string documentName, bool serializeAsV2 = false)
         {
             var requiredService = serviceProvider.GetRequiredService<ISwaggerProvider>();
-            var swaggerDocument = requiredService.GetSwagger(documentName);
+            var swagger = requiredService.GetSwagger(documentName);
 
-            using (var streamWriter = new StringWriter())
+            using (var textWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
-                var mvcOptionsAccessor = (IOptions<MvcJsonOptions>)serviceProvider.GetService(typeof(IOptions<MvcJsonOptions>));
-                var serializer = SwaggerSerializerFactory.Create(mvcOptionsAccessor);
+                var jsonWriter = new OpenApiJsonWriter(textWriter);
+                if (serializeAsV2) swagger.SerializeAsV2(jsonWriter); else swagger.SerializeAsV3(jsonWriter);
 
-                serializer.Serialize(streamWriter, swaggerDocument);
-                var content = streamWriter.ToString();
-                return content;
+                return textWriter.ToString();
             }
         }
     }
