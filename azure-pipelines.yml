@@ -11,7 +11,9 @@ steps:
 - script: dotnet pack --configuration $(buildConfiguration) -o ./
 
 - script: dotnet tool install gpr --tool-path ./bin
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - pwsh: |
     $nupkg = (Get-ChildItem -Filter *.nupkg -Recurse).FullName
     ./bin/gpr push $nupkg -k $(TOKEN) --owner MisinformedDNA
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
