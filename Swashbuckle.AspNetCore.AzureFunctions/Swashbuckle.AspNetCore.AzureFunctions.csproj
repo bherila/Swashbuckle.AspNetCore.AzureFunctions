@@ -6,11 +6,11 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Swashbuckle.AspNetCore.AzureFunctions</AssemblyName>
     <SignAssembly Condition="'$(OS)'=='Windows_NT'">true</SignAssembly>
-    <PackageId>Swashbuckle.AspNetCore.AzureFunctions</PackageId>
+    <PackageId>MisinformedDNA.Swashbuckle.AspNetCore.AzureFunctions</PackageId>
     <PackageTags>swagger;documentation;discovery;help;webapi;aspnet;aspnetcore;azure-functions</PackageTags>
     <PackageProjectUrl>https://github.com/bherila/Swashbuckle.AspNetCore.AzureFunctions</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/bherila/Swashbuckle.AzureFunctions/master/LICENSE</PackageLicenseUrl>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>2.0.1-prerelease</PackageVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/MisinformedDNA/Swashbuckle.AspNetCore.AzureFunctions.git</RepositoryUrl>
   </PropertyGroup>
