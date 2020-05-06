@@ -1,4 +1,4 @@
-﻿using Swashbuckle.AspNetCore.Swagger;
+﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Swashbuckle.AspNetCore.AzureFunctions.Filters
@@ -8,7 +8,7 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Filters
     /// </summary>
     public class AppendHttpMethodToOperationIdFilter : IOperationFilter
     {
-        public void Apply(Operation operation, OperationFilterContext context)
+        public void Apply(OpenApiOperation operation, OperationFilterContext context)
         {
             operation.OperationId += $"_{context.ApiDescription.HttpMethod}";
         }

@@ -3,17 +3,26 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
-  <ItemGroup>    
-    <PackageReference Include="BH.Swashbuckle.AspNetCore.AzureFunctions" Version="1.0.0" />    
-    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />    
-    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.1.1" />    
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
-    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.22" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />    
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.28" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="5.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="5.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.4.0" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Http" Version="3.0.0" />
-    <PackageReference Include="BH.Swashbuckle.AspNetCore.Annotations" Version="4.0.0" />
-    <PackageReference Include="BH.Swashbuckle.AspNetCore.Swagger" Version="4.0.0" />
-    <PackageReference Include="BH.Swashbuckle.AspNetCore.SwaggerGen" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Swashbuckle.AspNetCore.AzureFunctions\Swashbuckle.AspNetCore.AzureFunctions.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="host.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
