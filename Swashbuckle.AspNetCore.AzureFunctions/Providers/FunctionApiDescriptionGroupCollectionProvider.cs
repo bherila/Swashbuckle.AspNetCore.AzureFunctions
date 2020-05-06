@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
@@ -149,6 +150,9 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Providers
             {
                 var requestBodyTypeAttribute = parameter.GetCustomAttribute(typeof(RequestBodyTypeAttribute)) as RequestBodyTypeAttribute;
                 if (parameter.ParameterType == typeof(HttpRequestMessage) && requestBodyTypeAttribute == null)
+                    continue;
+
+                if (parameter.ParameterType == typeof(HttpRequest) && requestBodyTypeAttribute == null)
                     continue;
 
                 if (IgnoreParameter(parameter))

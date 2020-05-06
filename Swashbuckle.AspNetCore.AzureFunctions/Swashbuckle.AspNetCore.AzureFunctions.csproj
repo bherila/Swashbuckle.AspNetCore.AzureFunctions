@@ -10,7 +10,7 @@
     <PackageTags>swagger;documentation;discovery;help;webapi;aspnet;aspnetcore;azure-functions</PackageTags>
     <PackageProjectUrl>https://github.com/bherila/Swashbuckle.AspNetCore.AzureFunctions</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.githubusercontent.com/bherila/Swashbuckle.AzureFunctions/master/LICENSE</PackageLicenseUrl>
-    <PackageVersion>2.0.1-prerelease</PackageVersion>
+    <PackageVersion>2.0.2-prerelease</PackageVersion>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/MisinformedDNA/Swashbuckle.AspNetCore.AzureFunctions.git</RepositoryUrl>
   </PropertyGroup>
