@@ -5,15 +5,26 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet pack --configuration $(buildConfiguration) -o ./
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    arguments: '--configuration Release'
 
-- script: dotnet tool install gpr --tool-path ./bin
+- task: DotNetCoreCLI@2
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master-new'))
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/*.csproj'
+    versioningScheme: 'off'
+
+- task: NuGetAuthenticate@0
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master-new'))
 
-- pwsh: |
-    $nupkg = (Get-ChildItem -Filter *.nupkg -Recurse).FullName
-    ./bin/gpr push $nupkg -k $(TOKEN) --owner MisinformedDNA
+- task: DotNetCoreCLI@2
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master-new'))
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '62df761f-09f5-47be-9f8f-ce7411233f5b/5e77ab61-9988-4ba5-9bb2-2979e706e09d'
