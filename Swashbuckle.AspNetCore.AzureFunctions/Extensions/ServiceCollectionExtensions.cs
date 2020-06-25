@@ -43,8 +43,15 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Extensions
         public static string GetSwagger(this IServiceProvider serviceProvider, string documentName, bool serializeAsV2 = false)
         {
             var requiredService = serviceProvider.GetRequiredService<ISwaggerProvider>();
-            var swagger = requiredService.GetSwagger(documentName);
-
+            if (requiredService == null)
+            {
+                throw new Exception("Failed to instantiate ISwaggerProvider");
+            }
+            var swagger = requiredService.GetSwagger(documentName ?? "default");
+            if (swagger == null)
+            {
+                throw new Exception("Failed to instantiate Swagger");
+            }
             using (var textWriter = new StringWriter(CultureInfo.InvariantCulture))
             {
                 var jsonWriter = new OpenApiJsonWriter(textWriter);
