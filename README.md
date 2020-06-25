@@ -1,1 +1,1 @@
-Please see the Example for usage.
+This is now moved inside Swashbuckle.AspNetCore.AzureFunctions.
