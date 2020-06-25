@@ -177,6 +177,13 @@ namespace Swashbuckle.AspNetCore.AzureFunctions.Providers
                     {
                         IsOptional = bindingSource == BindingSource.Query
                     },
+                    ModelMetadata = new EmptyModelMetadataProvider().GetMetadataForType(type),
+                    DefaultValue = parameter.DefaultValue,
+                    ParameterDescriptor = new ParameterDescriptor()
+                    {
+                        Name = parameter.Name,
+                        ParameterType = parameter.ParameterType
+                    }
                 });
             }
 

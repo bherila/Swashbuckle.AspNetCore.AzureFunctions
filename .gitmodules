@@ -1,0 +1,3 @@
+[submodule "Swashbuckle.AspNetCore"]
+	path = Swashbuckle.AspNetCore
+	url = git@github.com:domaindrivendev/Swashbuckle.AspNetCore.git
